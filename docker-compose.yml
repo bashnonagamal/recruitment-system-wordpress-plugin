@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./web:/var/www/html
+    ports:
+      - '8080:80'
+    depends_on:
+      - php
+  php:
+    image: php:8.1-fpm-alpine3.18
+    env_file:
+      - ./path/to/custom/env-file/.env
+    volumes:
+      - ./web:/var/www/html
